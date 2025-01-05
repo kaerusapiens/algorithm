@@ -1,7 +1,11 @@
-from typing import List
+from typing import List, NewType
+
+IndexNum = NewType('IndexNum', int)
+#返却値のintをわかりやすくするため
 
 
-def linear_search(numbers:List[int], target:int) -> int:
+
+def linear_search(numbers:List[int], target:int) -> IndexNum:
     for i in range(len(numbers)):
         if numbers[i] == target:
             return i
