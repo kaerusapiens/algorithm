@@ -29,6 +29,15 @@ class LinkedList(object):
         new_node.next = self.head
         self.head = new_node
 
+    def remove(self, data:Any) -> None:
+        current_node = self.head
+        if current_node and current_node.data == data:
+            self.head = current_node.next
+            current_node = None
+            return
+        
+
+        
 if __name__ == '__main__':
     l = LinkedList()
     l.append(1)
