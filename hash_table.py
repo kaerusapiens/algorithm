@@ -33,14 +33,28 @@ class HashTable(object):
               if data[0] == key:
                    return data[1]
          return None
+    
+    def __setitem__(self,key,value) -> None:
+        #Python의 특수 메서드로, 객체를 딕셔너리처럼 사용할 수 있도록 해줍니다. 
+        self.add(key,value)
+
+    def __getitem__(self,key) -> Any:
+        return self.get(key)
 
 
 if __name__ == '__main__':
     hash_table = HashTable()
-    hash_table.add('car','Telsa')
-    hash_table.add('car','Audi')
-    hash_table.add('pc','MacBook')
-    hash_table.add('sns','Youtube')
+    hash_table['car'] = 'Telsa'
+    hash_table['car'] = 'Audi'
+    hash_table['pc'] = 'MacBook'
+    hash_table['sns'] = 'Youtube'
+
+    # hash_table.add('car','Telsa')
+    # hash_table.add('car','Audi')
+    # hash_table.add('pc','MacBook')
+    # hash_table.add('sns','Youtube')
 
     hash_table.print()
-    print(hash_table.get('car'))
+    print(hash_table['sns'])
+    # print(hash_table.get('car'))
+
