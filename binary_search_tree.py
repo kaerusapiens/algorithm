@@ -37,6 +37,34 @@ def search(node:Node, value:int) -> bool:
     elif node.value < value:
         return search(node.right, value)
 
+def min_value(node:Node) -> Node:
+    current = node 
+    while current.left is not None:
+        current = current.left
+    return current
+
+def remove(node:Node, value:int) ->None:
+    if node is None:
+        return node
+    
+    if value < node.value:
+        node.left = remove(node.left, value)
+    elif value > node.value:
+        node.right = remove(node.right,value)
+    else: #현재 노드의 값이 삭제하려는 값과 같을 때
+        if node.left is None:
+            return node.right
+        elif node.right is None:
+            return node.left
+        
+        temp = min_value(node.right)
+        node.value= temp.value
+        node.right = remove(node.right,temp.value)
+        
+    return node
+        
+
+
 
 if __name__ == '__main__':
     root = None
@@ -51,5 +79,7 @@ if __name__ == '__main__':
     # print(root.right.value)
     # print(root.right.left.value)
 
-    #inorder(root)
-    print(serach(root,3))
+    inorder(root)
+    print(search(root,3))
+    root = remove(root,6)
+    inorder(root)
